@@ -39,7 +39,11 @@ public class CursorScript : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, 999))
         {
-
+            Interactable interactable = hit.collider.GetComponent<Interactable>();
+            if (interactable != null)
+            {
+                interactable.OnRaycastHit();
+            }
         }
     }
 }

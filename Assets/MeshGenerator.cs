@@ -36,9 +36,7 @@ public class MeshGenerator : MonoBehaviour
 
         GetComponent<MeshRenderer>().material = mat;
         GetComponent<MeshFilter>().mesh = mesh;
-        GetComponent<MeshCollider>().mesh = mesh;
-
-
+        GetComponent<MeshCollider>().sharedMesh = mesh;
     }
 
     // Update is called once per frame
