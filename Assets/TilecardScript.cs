@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -9,6 +10,10 @@ public class TilecardScript : MonoBehaviour
     public bool held = false;
     public Vector3 startingPos;
     public Vector3 currentPos;
+
+    public GameObject textContainer;
+    public TextMeshProUGUI title;
+    public TextMeshProUGUI number;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +33,8 @@ public class TilecardScript : MonoBehaviour
 
             HoldCard();
         }
+
+        TextFollowsCard(transform.position);
     }
 
     public void RaycastHitScript()
@@ -38,6 +45,7 @@ public class TilecardScript : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButtonDown(0))
         {
             held = true;
+            startingPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         }
 
     }
@@ -45,6 +53,15 @@ public class TilecardScript : MonoBehaviour
     public void HoldCard()
     {
         currentPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        transform.position = Camera.main.WorldToScreenPoint(currentPos + startingPos);
+        currentPos -= startingPos;
+        currentPos.z = 0;
+        transform.position = currentPos;
+    }
+    
+    public void TextFollowsCard(Vector3 vec)
+    {
+        Vector3 newPos = vec;
+
+        textContainer.transform.position = newPos;
     }
 }
