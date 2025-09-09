@@ -15,6 +15,10 @@ public class TilecardScript : MonoBehaviour
     public TextMeshProUGUI title;
     public TextMeshProUGUI number;
 
+    public LineRenderer lineRenderer;
+    public TilecardScript[] parents;
+    public TilecardScript[] kids;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -63,5 +67,10 @@ public class TilecardScript : MonoBehaviour
         Vector3 newPos = vec;
 
         textContainer.transform.position = newPos;
+    }
+
+    public void UpdateLines()
+    {
+
     }
 }
